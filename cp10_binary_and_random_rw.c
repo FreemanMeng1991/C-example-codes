@@ -3,28 +3,28 @@
 #include <time.h>
 #define SIZE 5
 struct student_type
-	{char name[10];
+{	char name[10];
 	int num;
 	int age;
 	char addr[15];
 }stud[SIZE];  // 定义全局结构体数组stud，包含size个学生数据  
 
 void save( )   // 定义函数save，向文件输出SIZE个学生的数据  
-{  FILE *fp;
-   int i;
-   if((fp=fopen ("stu.dat","wb"))==NULL)  
-      {printf("cannot open file\n");
-       return;
-      }
+{	FILE *fp;
+	int i;
+	if((fp=fopen ("stu.dat","wb"))==NULL)  
+	{	printf("cannot open file\n");
+       	return;
+	}
    for(i=0;i<SIZE;i++)
 //   fprintf(fp,"%s %d %d %s",
 //			 stud[i].name,stud[i].num,stud[i].age,stud[i].addr); 
       if(fwrite (&stud[i],sizeof (struct student_type),1,fp)==1)
-         printf ("Pos: %d\n",ftell(fp));
+        	printf ("Pos: %d\n",ftell(fp));
       else
-         printf ("Fail to Write File!");
+    		printf ("Fail to Write File!");
       
-   fclose(fp);
+	fclose(fp);
 }
 
 void random_read()
